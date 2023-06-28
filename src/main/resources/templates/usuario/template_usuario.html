@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Pet Shop Lomitos - Tienda Virtual</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<!-- Fuente de google -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<!-- Iconos Ionicons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation Unlogged -->
+	<div th:fragment="header">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+			<div class="container p-2">
+				<div id="header-links">
+					<a class="navbar-brand" th:href="@{/}"><i class="icon ion-md-paw"></i> Pet Shop Lomitos</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+						aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link" th:href="@{/usuario/login}">Iniciar Sesión</a></li>
+							<li class="nav-item"><a class="nav-link" th:href="@{/}">Tienda</a></li>
+							<li class="nav-item"><a class="nav-link" th:href="@{/getCart}">Carrito</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<form class="form-inline my-2 my-lg-0" method="post" th:action="@{/search}">
+					<input class="form-control form-control-sm mr-sm-3" type="search" placeholder="Busca el producto que necesitas"
+						aria-label="Search" name="nombre" autocomplete="off">
+					<button class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+			</div>
+		</nav>
+	</div>
+
+	<!-- Navigation Logged -->
+	<div th:fragment="header-user">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+			<div class="container p-2">
+				<div id="header-links">
+					<a class="navbar-brand" th:href="@{/}"><i class="icon ion-md-paw"></i> Pet Shop Lomitos</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+						aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarResponsive">
+						<ul class="navbar-nav ml-auto">
+							<li class="nav-item"><a class="nav-link" th:href="@{/}">Tienda</a></li>
+							<li class="nav-item"><a class="nav-link" th:href="@{/getCart}">Carrito</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<form class="form-inline my-2 my-lg-0 ml-5" method="post" th:action="@{/search}">
+					<input class="form-control form-control-sm mr-sm-3" type="search" placeholder="Busca el producto que necesitas"
+						aria-label="Search" name="nombre" autocomplete="off">
+					<button class="btn btn-outline-success btn-sm my-2 my-sm-0" type="submit">Buscar</button>
+				</form>
+
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#"
+								id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">Usuario</a>
+
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+								<a class="dropdown-item" th:href="@{/usuario/compras}">Compras</a>
+								<a class="dropdown-item" th:href="@{/usuario/cerrar}">Salir</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+						
+			</div>
+		</nav>
+	</div>
+
+	<!-- Footer -->
+	<div th:fragment="footer-user">
+		<footer class="py-4 bg-dark" id="footer">
+			<p class="m-0 text-center text-white">Todos los Derechos Reservados &#169; 2023 | PET SHOP LOMITOS</p>
+		</footer>
+	</div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

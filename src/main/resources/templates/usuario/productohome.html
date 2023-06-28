@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Pet Shop Lomitos - Tienda Virtual</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<!-- Fuente de google -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<!-- Iconos Ionicons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Header -->
+	<div th:include="usuario/template_usuario.html::header"></div>
+
+	<!-- Page Content -->
+	<div class="container" id="product-detail">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">Tienda</a></li>
+			<li class="breadcrumb-item active" th:text="${producto.categoria}"></li>
+			<li class="breadcrumb-item active" th:text="${producto.nombre}"></li>
+		</ol>
+
+		<!-- Product Details -->
+		<div class="card mb-5">
+			<div class="card-body pr-5 pl-5">
+				<div class="row">
+					<div class="col-lg-6">
+						<img class="img-fluid rounded" th:src="@{/images/{img} (img=${producto.imagen})}"
+							alt="Imagen Producto">
+					</div>
+					<div class="col-lg-6">
+						<form th:action="@{/cart}" method="POST">
+							<input type="hidden" th:value="${producto.id}" name="id">
+							<h3 class="card-title m-4 text-center" th:text="${producto.nombre}"></h3>
+							<ul class="list-group">
+								<li class="list-group-item">
+									<p style="text-align: justify;" th:text="${producto.descripcion}"></p>
+								</li>
+								<li class="list-group-item text-center">
+									<h5 style="color:darkgreen; font-weight:bold;"
+										th:text="'S/. ' + ${#numbers.formatDecimal(producto.precio, 0, 'COMMA', 2, 'POINT')}">
+									</h5>
+								</li>
+								<li class="list-group-item text-center">
+									<h5>Cantidad<input class="col-lg-5 ml-4 mt-2 text-center" type="number"
+											id="cantidad" name="cantidad" autocomplete="off" min="1" max="10" value="1">
+									</h5>
+								</li>
+							</ul>
+							<div id="product-detail-button" style="text-align: center;">
+								<button type="submit" id="addcarrito" class="btn btn-success mt-4 col-lg-8">Añadir al
+									carrito</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div th:include="usuario/template_usuario.html::footer-user"></div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Pet Shop Lomitos - Tienda Virtual</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<!-- Fuente de google -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<!-- Iconos Ionicons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<div th:include="administrador/template_admin.html::header-admin"></div>
+
+	<!-- Page Content -->
+	<div class="container" id="cart-container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/administrador}">Tienda</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/administrador/productos}">Listado de Productos</a></li>
+			<li class="breadcrumb-item active">Crear Producto</li>
+		</ol>
+
+		<div class="container mb-4 mt-4" id="register-fields">
+			<div class="card mb-4 mt-2" id="iniciar-sesion">
+				<h2>Registro de Producto</h2>
+			</div>
+			<form th:action="@{/administrador/productos/save}" method="post" enctype="multipart/form-data" id="register-form">
+				<div class="form-group col-14 mb-4">
+					<label for="nombre">Nombre:</label>
+					<input type="text" class="form-control" id="nombre" name="nombre"
+						placeholder="Ingrese el nombre del producto" autocomplete="off" required>
+				</div>
+				<div class="form-group col-14 mb-4">
+					<label for="categoria">Categoría:</label>
+					<input type="text" class="form-control" id="categoria" name="categoria"
+						placeholder="Ingrese la categoria del producto" autocomplete="off" required>
+				</div>
+				<div class="form-group col-14 mb-4">
+					<label for="descripcion">Descripción:</label>
+					<textarea class="form-control" id="descripcion" name="descripcion"
+						placeholder="Ingrese la descripcion del producto" required autocomplete="off"></textarea>
+				</div>
+				<div class="form-group col-14 mb-4">
+					<label for="cantidad">Cantidad:</label>
+					<input type="number" class="form-control" id="cantidad" name="cantidad"
+						placeholder="Ingrese la cantidad del producto" required autocomplete="off">
+				</div>
+				<div class="form-group col-14 mb-4">
+					<label for="precio">Precio:</label>
+					<input type="number" class="form-control" step="any" id="precio" name="precio"
+						placeholder="Ingrese el precio del producto" autocomplete="off" required>
+				</div>
+				<div class="form-group col-14 mb-4">
+					<label for="img">Imagen:</label>
+					<input type="file" class="form-control-file" id="img" name="img">
+				</div>
+				<div class="form-group col-14 mb-4">
+					<button type="submit" class="btn btn-success col-12">Guardar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<div th:include="administrador/template_admin.html::footer-admin"></div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

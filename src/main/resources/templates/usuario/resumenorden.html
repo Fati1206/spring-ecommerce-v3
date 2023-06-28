@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Pet Shop Lomitos - Tienda Virtual</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<!-- Fuente de google -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<!-- Iconos Ionicons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<div th:include="usuario/template_usuario.html::header-user"></div>
+
+	<!-- Page Content -->
+	<div class="container" id="cart-container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">Tienda</a></li>
+			<li class="breadcrumb-item"><a th:href="@{/getCart}">Carrito de compras</a></li>
+			<li class="breadcrumb-item active">Generar Orden</li>
+		</ol>
+
+		<!-- Blog Post -->
+		<div class="card p-0 mb-4" id="order-detail">
+			<div class="card p-0" id="cart-detail" style="border:none">
+				<div class="card-body m-4">
+					<h5 class="card-title mb-4 font-weight-bold">DETALLE DE LA ORDEN</h5>
+					<p th:text="'Nombre    : '+ ${usuario.nombre}"></p>
+					<p th:text="'Email     : '+ ${usuario.email}"></p>
+					<p th:text="'Teléfono  : '+ ${usuario.telefono}"></p>
+					<p th:text="'Dirección : '+ ${usuario.direccion}"></p>
+				</div>
+				<div class="card-body col-lg-3 mt-2 pr-0 text-center">
+					<h1 class="card-title" id="order-icon"><i class="icon ion-md-paw"></i></h1>
+					<p>PET SHOP LOMITOS S.A.C.</p>
+				</div>
+			</div>
+			<div class="card p-0 mb-4" id="cart-detail" style="border:none">
+				<div class="table-responsive col-lg-9">
+					<table class="table table-striped text-center mt-3">
+						<thead class="table-dark">
+							<tr>
+								<th scope="col">Producto</th>
+								<th scope="col">PrecioUnitario</th>
+								<th scope="col">Cantidad</th>
+								<th scope="col">PrecioTotal</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="dorden:${cart}">
+								<td class="align-midle" th:text="${dorden.nombre}" style="text-align: left;"></td>
+								<td class="align-middle"
+									th:text="'S/. ' + ${#numbers.formatDecimal(dorden.precio, 0, 'COMMA', 2, 'POINT')}">
+								</td>
+								<td class="align-middle" th:text="${dorden.cantidad}"></td>
+								<td class="align-middle"
+									th:text="'S/. ' + ${#numbers.formatDecimal(dorden.total, 0, 'COMMA', 2, 'POINT')}">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="card col-lg-2 p-0" id="checkout-card">
+					<h5 class="card-header bg-dark text-center mt-3" id="checkout-header">Total de la Orden</h5>
+					<h5 class="text-center mt-5 mb-5"
+						th:text="'S/. ' + ${#numbers.formatDecimal(orden.total, 0, 'COMMA', 2, 'POINT')}"></h5>
+					<a th:href="@{/saveOrder}" class="btn btn-success">Generar Orden</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<div th:include="usuario/template_usuario.html::footer-user"></div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

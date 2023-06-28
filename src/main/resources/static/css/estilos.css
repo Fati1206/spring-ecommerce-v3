@@ -1,0 +1,294 @@
+::root {
+	--main-color: white;
+	--title-color: rgb(111, 111, 111);
+}
+
+html {
+	position: relative;
+	min-height: 100vh;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	width: 99vw;
+	height: auto;
+	font-family: 'Poppins', sans-serif;
+}
+
+
+/*-----Header-----*/
+#header-links {
+	display:flex;
+	gap: 5px;
+	align-items: baseline;
+}
+
+
+/*-----Login-----*/
+#main-login {
+	width: 100%;
+	height: auto;
+	margin-top: 9vh;
+	display: flex;
+}
+
+#main-image {
+	width: 50%;
+	margin: 0;
+	padding: 0;
+}
+
+#img-dog {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+#login-fields {
+	margin: auto;
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#iniciar-sesion {
+	border: none;
+	margin: auto;
+	color: rgb(111, 111, 111);
+}
+
+#registro {
+	text-align: center;
+}
+
+#login-button {
+	text-align: center;
+}
+
+
+/*-----Registro-----*/
+#main-register {
+	width: 100%;
+	min-height: calc(100vh - 218px);
+	margin-top: 14vh;
+	margin-bottom: 5vh;
+	display: flex;
+	flex-direction: column;
+}
+
+#register-fields {
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#register-button {
+	text-align: center;
+}
+
+
+/*-----Productos-----*/
+.main-products {
+	text-align: center;
+	color: rgb(111, 111, 111);
+}
+
+.main-products.h1 {
+	margin: 7rem 0 0;
+}
+
+.main-products.h5 {
+	margin: 2rem 0 3rem;
+}
+
+#product-detail {
+	margin-top: 7rem;
+}
+
+#cart-container {
+	margin-top: 7rem;
+	min-height: calc(100vh - 180px);
+}
+
+#cart-detail {
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+#checkout-card {
+	border: none;
+}
+
+#checkout-header {
+	color: white;
+	font-weight: bold;
+}
+
+#order-detail {
+	flex-direction: column;
+}
+
+#order-icon {
+	font-size: 5rem;
+	color: forestgreen;
+	text-shadow: rgb(205, 205, 205) 5px 5px;
+}
+
+
+/*-----Carrusel-----*/
+.carousel {
+  width: 100%;
+  height: 8rem;
+  margin: 2rem 0;
+  padding: 5px;
+  background-color: #f7f7f7;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.carousel .carousel-inner {
+  display: flex;
+  height: 100%;
+  background-color: white;
+  animation: scroll 35s linear infinite;
+  -webkit-animation: scroll 35s linear infinite;
+  width: calc(120px * 16);
+}
+
+.carousel .carousel-inner .carousel-item {
+  display: flex;
+  flex: auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.carousel .carousel-inner .carousel-item img {
+	
+}
+
+
+/*-----Mini NavBar-----*/
+#main-home {
+	display: flex;
+	flex-direction: row;
+}
+
+#nav-filter{
+	margin: 0 2rem 0 0;
+	padding: 0;
+	border-radius: 5px;
+	min-width: 15rem;	
+	flex-direction: column;
+}
+
+#block-list{
+	margin: 0;
+	padding: 0;
+	background-color: #f7f7f7;
+	border-radius: 4px;
+	height: 23rem;
+	text-align: left;
+}
+
+#nav-list {	
+	list-style-type: none;
+	padding: 0;
+}
+
+#nav-list li {
+  	padding: 18px;
+ 	border: 1px solid rgb(221, 221, 221);
+}
+
+#nav-list li:hover {
+	background-color: rgb(221, 221, 221);
+}
+
+.titlelist {
+	color: rgb(82, 82, 82);
+	font-weight: bolder;
+}
+
+.sublist {
+	text-indent: 1.5rem;
+}
+
+#nav-filter ul li a{
+	text-decoration: none;
+	color: rgb(111, 111, 111);
+}
+
+#nav-filter ul li a:hover{
+	color: #218838;
+}
+
+
+/*-----Administrador-----*/
+#products-list {
+	flex-direction: column;
+	justify-content: center;
+}
+
+#admin-buttons {
+	display: flex;
+	justify-content: center;
+	margin: 2rem 0;
+}
+
+
+
+/*-----Media Querys-----*/
+@media(max-width: 1366px){
+	#main-login {
+		margin-top: 11vh;
+	}
+}
+
+@media(max-width: 800px){
+	#main-login {
+		margin-top: 14vh;
+	}
+}
+
+@media(max-width: 1366px){
+	#main-register {
+		margin-top: 18vh;
+	}
+}
+
+@media(max-width: 800px){
+	#main-register {
+		margin-top: 20vh;
+	}
+}
+
+@media(max-width: 1366px){
+	#register-fields {
+		margin: 5vh auto 10vh;
+	}
+}
+
+@media(max-width: 800px){
+	#register-fields {
+		margin: 3vh auto 5vh;
+	}
+}
+
+
+/*-----Keyframes-----*/
+@keyframes scroll {
+	0% {
+		-webkit-transform: translateX(0);
+		transform: translateX(0);
+	}
+	100% {
+		-webkit-transform: translateX(calc(-100px * 8));
+		transform: translateX(calc(-100px * 8));
+	}
+}
+

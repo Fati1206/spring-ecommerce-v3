@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Pet Shop Lomitos - Tienda Virtual</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<!-- Fuente de google -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<!-- Iconos Ionicons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<div th:include="administrador/template_admin.html::header-admin"></div>
+
+	<!-- Page Content -->
+	<div class="container mb-5" id="cart-container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/administrador}">Tienda</a></li>
+			<li class="breadcrumb-item active">Listado de Ordenes</li>
+		</ol>
+		<div id="admin-buttons">
+			<form class="form-inline my-2 my-lg-0 ml-5" method="post" th:action="@{/administrador/searchorder}">
+				<input class="form-control form-control mr-sm-3" type="search" placeholder="Ingrese número de orden"
+					aria-label="Search" name="numero" autocomplete="off">
+				<button class="btn btn-success btn my-2 my-sm-0" type="submit">Buscar</button>
+			</form>
+		</div>
+
+		<!-- Blog Post -->
+		<div class="card p-0 mb-4">
+			<div class="table-responsive col-lg-12">
+				<table class="table table-hover text-center mt-3">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">N° de Orden</th>
+							<th scope="col">Usuario</th>
+							<th scope="col">Fecha</th>
+							<th scope="col">Hora</th>
+							<th scope="col">Valor</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="orden:${ordenes}">
+							<td th:text="${orden.numero}"></td>
+							<td th:text="${orden.usuario.username}"></td>
+							<td th:text="${#dates.format(orden.fechaCreacion, 'dd-MM-yyyy')}"></td>
+							<td th:text="${#dates.format(orden.fechaCreacion, 'HH:mm')}"></td>
+							<td th:text="'S/. ' + ${#numbers.formatDecimal(orden.total, 0, 'COMMA', 2, 'POINT')}"></td>
+							<td><a th:href="@{/administrador/detalle/{id} (id=${orden.id}) }"
+									class="btn btn-success">Ver	Detalle</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<div th:include="administrador/template_admin.html::footer-admin"></div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

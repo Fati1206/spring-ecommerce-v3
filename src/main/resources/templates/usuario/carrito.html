@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Pet Shop Lomitos - Tienda Virtual</title>
+
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/css/estilos.css}">
+	<!-- Fuente de google -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	<!-- Iconos Ionicons -->
+	<link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}"></div>
+	<div th:include="usuario/template_usuario.html::header-user" th:unless="${sesion==null}"></div>
+
+	<!-- Page Content -->
+	<div class="container" id="cart-container">
+
+		<!-- Page Heading/Breadcrumbs -->
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a th:href="@{/}">Tienda</a></li>
+			<li class="breadcrumb-item active">Carrito de compras</li>
+		</ol>
+
+		<!-- Blog Post -->
+		<div class="card p-0 mb-4" id="cart-detail">
+			<div class="table-responsive col-lg-9">
+				<table class="table table-hover text-center mt-3">
+					<thead class="table-dark">
+						<tr>
+							<th scope="col">Item</th>
+							<th scope="col">Producto</th>
+							<th scope="col">PrecioUnitario</th>
+							<th scope="col">Cantidad</th>
+							<th scope="col">PrecioTotal</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="dorden:${cart}">
+							<td><img th:src="@{/images/{img} (img=${dorden.imagen})}" height="100px"></td>
+							<td class="align-middle" th:text="${dorden.nombre}"></td>
+							<td class="align-middle"
+								th:text="'S/. ' + ${#numbers.formatDecimal(dorden.precio, 0, 'COMMA', 2, 'POINT')}">
+							</td>
+							<td class="align-middle" th:text="${dorden.cantidad}"></td>
+							<td class="align-middle"
+								th:text="'S/. ' + ${#numbers.formatDecimal(dorden.total, 0, 'COMMA', 2, 'POINT')}"></td>
+							<td class="align-middle"><a th:href="@{/delete/cart/{id} (id=${dorden.producto.id})}"
+									class="btn btn-danger">Quitar</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="card col-lg-2 p-0" id="checkout-card">
+				<h5 class="card-header bg-dark text-center mt-3" id="checkout-header">Total a Pagar</h5>
+				<h5 class="text-center mt-5 mb-5"
+					th:text="'S/. ' + ${#numbers.formatDecimal(orden.total, 0, 'COMMA', 2, 'POINT')}"></h5>
+				<a th:href="@{/order}" class="btn btn-success mb-3">Ver Orden</a>
+			</div>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<div th:include="usuario/template_usuario.html::footer-user"></div>
+
+	<!-- Bootstrap core JavaScript -->
+	<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>
